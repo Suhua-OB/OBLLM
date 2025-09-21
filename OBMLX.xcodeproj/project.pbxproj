@@ -32,16 +32,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		863470A32E7DAFDE008F189F /* OBLLM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OBLLM.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		863470B22E7DAFDF008F189F /* OBLLMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OBLLMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		863470BC2E7DAFDF008F189F /* OBLLMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OBLLMUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		863470A32E7DAFDE008F189F /* OBMLX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OBMLX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		863470B22E7DAFDF008F189F /* OBMLXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OBMLXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		863470BC2E7DAFDF008F189F /* OBMLXUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OBMLXUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		86E6A1312E802E97007F29AE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		863470DE2E7DB02A008F189F /* OBLLM */ = {
+		863470DE2E7DB02A008F189F /* OBMLX */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = OBLLM;
+			path = OBMLX;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -79,7 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				86E6A1312E802E97007F29AE /* README.md */,
-				863470DE2E7DB02A008F189F /* OBLLM */,
+				863470DE2E7DB02A008F189F /* OBMLX */,
 				863471092E7DB4AC008F189F /* Frameworks */,
 				863470A42E7DAFDE008F189F /* Products */,
 			);
@@ -88,9 +88,9 @@
 		863470A42E7DAFDE008F189F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				863470A32E7DAFDE008F189F /* OBLLM.app */,
-				863470B22E7DAFDF008F189F /* OBLLMTests.xctest */,
-				863470BC2E7DAFDF008F189F /* OBLLMUITests.xctest */,
+				863470A32E7DAFDE008F189F /* OBMLX.app */,
+				863470B22E7DAFDF008F189F /* OBMLXTests.xctest */,
+				863470BC2E7DAFDF008F189F /* OBMLXUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -105,9 +105,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		863470A22E7DAFDE008F189F /* OBLLM */ = {
+		863470A22E7DAFDE008F189F /* OBMLX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 863470C62E7DAFDF008F189F /* Build configuration list for PBXNativeTarget "OBLLM" */;
+			buildConfigurationList = 863470C62E7DAFDF008F189F /* Build configuration list for PBXNativeTarget "OBMLX" */;
 			buildPhases = (
 				8634709F2E7DAFDE008F189F /* Sources */,
 				863470A02E7DAFDE008F189F /* Frameworks */,
@@ -118,9 +118,9 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				863470DE2E7DB02A008F189F /* OBLLM */,
+				863470DE2E7DB02A008F189F /* OBMLX */,
 			);
-			name = OBLLM;
+			name = OBMLX;
 			packageProductDependencies = (
 				8634710A2E7DB4AC008F189F /* MLXLLM */,
 				8634710C2E7DB4AC008F189F /* MLXLMCommon */,
@@ -128,12 +128,12 @@
 				863471102E7DB4AC008F189F /* MarkdownUI */,
 			);
 			productName = OBLLM;
-			productReference = 863470A32E7DAFDE008F189F /* OBLLM.app */;
+			productReference = 863470A32E7DAFDE008F189F /* OBMLX.app */;
 			productType = "com.apple.product-type.application";
 		};
-		863470B12E7DAFDF008F189F /* OBLLMTests */ = {
+		863470B12E7DAFDF008F189F /* OBMLXTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 863470C92E7DAFDF008F189F /* Build configuration list for PBXNativeTarget "OBLLMTests" */;
+			buildConfigurationList = 863470C92E7DAFDF008F189F /* Build configuration list for PBXNativeTarget "OBMLXTests" */;
 			buildPhases = (
 				863470AE2E7DAFDF008F189F /* Sources */,
 				863470AF2E7DAFDF008F189F /* Frameworks */,
@@ -144,16 +144,16 @@
 			dependencies = (
 				863470B42E7DAFDF008F189F /* PBXTargetDependency */,
 			);
-			name = OBLLMTests;
+			name = OBMLXTests;
 			packageProductDependencies = (
 			);
 			productName = OBLLMTests;
-			productReference = 863470B22E7DAFDF008F189F /* OBLLMTests.xctest */;
+			productReference = 863470B22E7DAFDF008F189F /* OBMLXTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		863470BB2E7DAFDF008F189F /* OBLLMUITests */ = {
+		863470BB2E7DAFDF008F189F /* OBMLXUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 863470CC2E7DAFDF008F189F /* Build configuration list for PBXNativeTarget "OBLLMUITests" */;
+			buildConfigurationList = 863470CC2E7DAFDF008F189F /* Build configuration list for PBXNativeTarget "OBMLXUITests" */;
 			buildPhases = (
 				863470B82E7DAFDF008F189F /* Sources */,
 				863470B92E7DAFDF008F189F /* Frameworks */,
@@ -164,11 +164,11 @@
 			dependencies = (
 				863470BE2E7DAFDF008F189F /* PBXTargetDependency */,
 			);
-			name = OBLLMUITests;
+			name = OBMLXUITests;
 			packageProductDependencies = (
 			);
 			productName = OBLLMUITests;
-			productReference = 863470BC2E7DAFDF008F189F /* OBLLMUITests.xctest */;
+			productReference = 863470BC2E7DAFDF008F189F /* OBMLXUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -194,7 +194,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8634709E2E7DAFDE008F189F /* Build configuration list for PBXProject "OBLLM" */;
+			buildConfigurationList = 8634709E2E7DAFDE008F189F /* Build configuration list for PBXProject "OBMLX" */;
 			developmentRegion = "zh-Hans";
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -213,9 +213,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				863470A22E7DAFDE008F189F /* OBLLM */,
-				863470B12E7DAFDF008F189F /* OBLLMTests */,
-				863470BB2E7DAFDF008F189F /* OBLLMUITests */,
+				863470A22E7DAFDE008F189F /* OBMLX */,
+				863470B12E7DAFDF008F189F /* OBMLXTests */,
+				863470BB2E7DAFDF008F189F /* OBMLXUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -272,12 +272,12 @@
 /* Begin PBXTargetDependency section */
 		863470B42E7DAFDF008F189F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 863470A22E7DAFDE008F189F /* OBLLM */;
+			target = 863470A22E7DAFDE008F189F /* OBMLX */;
 			targetProxy = 863470B32E7DAFDF008F189F /* PBXContainerItemProxy */;
 		};
 		863470BE2E7DAFDF008F189F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 863470A22E7DAFDE008F189F /* OBLLM */;
+			target = 863470A22E7DAFDE008F189F /* OBMLX */;
 			targetProxy = 863470BD2E7DAFDF008F189F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -422,6 +422,7 @@
 				ENABLE_RESOURCE_ACCESS_USB = NO;
 				ENABLE_USER_SELECTED_FILES = readwrite;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -437,7 +438,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = onesbest.OBLLM;
+				PRODUCT_BUNDLE_IDENTIFIER = onesbest.OBMLX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -476,6 +477,7 @@
 				ENABLE_RESOURCE_ACCESS_USB = NO;
 				ENABLE_USER_SELECTED_FILES = readwrite;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -491,7 +493,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = onesbest.OBLLM;
+				PRODUCT_BUNDLE_IDENTIFIER = onesbest.OBMLX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -528,7 +530,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OBLLM.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OBLLM";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OBMLX.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OBMLX";
 				XROS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Debug;
@@ -554,7 +556,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OBLLM.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OBLLM";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OBMLX.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OBMLX";
 				XROS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Release;
@@ -612,7 +614,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8634709E2E7DAFDE008F189F /* Build configuration list for PBXProject "OBLLM" */ = {
+		8634709E2E7DAFDE008F189F /* Build configuration list for PBXProject "OBMLX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				863470C42E7DAFDF008F189F /* Debug */,
@@ -621,7 +623,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		863470C62E7DAFDF008F189F /* Build configuration list for PBXNativeTarget "OBLLM" */ = {
+		863470C62E7DAFDF008F189F /* Build configuration list for PBXNativeTarget "OBMLX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				863470C72E7DAFDF008F189F /* Debug */,
@@ -630,7 +632,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		863470C92E7DAFDF008F189F /* Build configuration list for PBXNativeTarget "OBLLMTests" */ = {
+		863470C92E7DAFDF008F189F /* Build configuration list for PBXNativeTarget "OBMLXTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				863470CA2E7DAFDF008F189F /* Debug */,
@@ -639,7 +641,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		863470CC2E7DAFDF008F189F /* Build configuration list for PBXNativeTarget "OBLLMUITests" */ = {
+		863470CC2E7DAFDF008F189F /* Build configuration list for PBXNativeTarget "OBMLXUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				863470CD2E7DAFDF008F189F /* Debug */,
