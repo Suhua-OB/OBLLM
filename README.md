@@ -1,4 +1,4 @@
-# OB-MLX (Minimal Swift LLM App)
+# OBMLX (Minimal Swift LLM App)
 
 ## 目标
 - 本地加载 MLX / mlx-swift-examples 转换后的模型目录
