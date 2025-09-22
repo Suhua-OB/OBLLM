@@ -17,13 +17,15 @@ class LocalLLM {
     // 当前生成任务与流的 continuation（只保留一个生成会话）
     private var generateTask: Task<Void, Never>?
     private var streamContinuation: AsyncThrowingStream<String, Error>.Continuation?
-
+    
+    var instructions: String? = nil
+    var generateParameters: GenerateParameters = .init()
     func loadModel(at url: URL) async throws {
         context = try await MLXLMCommon.loadModel(directory: url)
     }
 
     /// 流式生成（外层调用者用 `for try await token in llm.generateStream(...)`）
-    func generateStream(prompt: String, maxTokens: Int = 128) -> AsyncThrowingStream<String, Error> {
+    func generateStream(input: String, maxTokens: Int = 128, prompt: String? = nil, gp: GenerateParameters? = nil) -> AsyncThrowingStream<String, Error> {
         guard let context = context else {
             return AsyncThrowingStream { continuation in
                 continuation.finish(throwing: NSError(domain: "LocalLLM",
@@ -31,7 +33,14 @@ class LocalLLM {
                                                      userInfo: [NSLocalizedDescriptionKey: "模型未加载"]))
             }
         }
-
+        
+        if let prompt = prompt {
+            instructions = prompt
+        }
+        
+        if let gp = gp {
+            generateParameters = gp
+        }
         // 如果已有未结束的流，先结束它（防止并发多个流）
         // 注意：因为我们在 @MainActor，直接操作属性是安全的
         if let t = generateTask {
@@ -60,10 +69,10 @@ class LocalLLM {
             self.generateTask = Task {
                 do {
                     if self.chatSession == nil {
-                        self.chatSession = ChatSession(context)
+                        self.chatSession = ChatSession(context,instructions: instructions,generateParameters: generateParameters)
                     }
                     let session = self.chatSession!
-                    for try await token in session.streamResponse(to: prompt) {
+                    for try await token in session.streamResponse(to: input) {
                         // 如果任务被取消，退出循环（但不要依赖抛出）
                         if Task.isCancelled { break }
                         continuation.yield(token)
@@ -101,7 +110,15 @@ class LocalLLM {
         }
     }
 
-    func newSession() {
+    func newSession(gp: GenerateParameters? = nil,prompt: String? = nil) {
+        if let gp = gp {
+            generateParameters = gp
+        }
+        if let prompt = prompt {
+            instructions = prompt
+        }
         chatSession = nil
     }
+    
+    
 }

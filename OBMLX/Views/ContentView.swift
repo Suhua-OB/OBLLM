@@ -13,6 +13,7 @@ struct ContentView: View {
     @EnvironmentObject var modelManager: ModelManager
     @State private var input: String = ""
     @State private var selectedModelName: String? = nil
+    @State private var showSettings = false
 
     // Alert & File Export
     @State private var showTokenizerAlert = false
@@ -125,11 +126,13 @@ struct ContentView: View {
         .hideToolbarBackground{
             HStack(alignment: .center, spacing: 8) {
                 // 状态文字
-                Text(statusText)
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-                    .lineLimit(1)
-                    .truncationMode(.middle)
+                if modelManager.isLoading || modelManager.lastError != nil {
+                    Text(statusText)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                        .lineLimit(1)
+                        .truncationMode(.middle)
+                }
                 
                 if let error = modelManager.lastError,
                    error.contains("tokenizer.json") || error.contains("tokenizer") {
@@ -147,9 +150,16 @@ struct ContentView: View {
                 }
 
                 // 状态指示点
-                Circle()
-                    .fill(statusColor)
-                    .frame(width: 10, height: 10)
+                if modelManager.modelLoaded, let name = selectedModelName {
+                    Circle()
+                        .fill(statusColor)
+                        .frame(width: 10, height: 10)
+                        .help(name)
+                } else {
+                    Circle()
+                        .fill(statusColor)
+                        .frame(width: 10, height: 10)
+                }
 
                 // 选择模型按钮
                 Button(action: {
@@ -169,7 +179,7 @@ struct ContentView: View {
                         .foregroundColor(Color.systemBackground) // 白色文字
                 }
                 .padding(.leading,-5)
-                .padding(.trailing, 3)
+//                .padding(.trailing, 3)
                 .fixedSize()
                 .onHover { inside in
                     if inside {
@@ -178,7 +188,75 @@ struct ContentView: View {
                         NSCursor.pop()
                     }
                 }
+                
+                Button(action: {
+                    showSettings = true
+                }) {
+                    Text("设置")
+                        .font(.system(size: 12, weight: .semibold))
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 4)
+                        .background(
+                            Capsule().fill(Color.secondary) // 蓝色椭圆背景
+                        )
+                        .foregroundColor(Color.systemBackground) // 白色文字
+                }
+                .buttonStyle(.plain)
+                .fixedSize()
+                .padding(.leading, -5)
+                .padding(.trailing, 3)
+                .onHover { inside in
+                    if inside {
+                        NSCursor.pointingHand.push()
+                    } else {
+                        NSCursor.pop()
+                    }
+                }
             }
+        }
+        .sheet(isPresented: $showSettings) {
+            VStack(spacing: 20) {
+                Text("设置")
+                    .font(.title2)
+                    .padding(.top, 20)
+                Text("Prompt")
+                TextEditor(text: $modelManager.instructions)
+                    .frame(height: 100)
+                    .padding(4)
+                    .overlay(RoundedRectangle(cornerRadius: 5).stroke(Color.gray.opacity(0.4)))
+                VStack(alignment: .leading) {
+                    Text("Temperature: \(String(format: "%.2f", modelManager.generationConfig.temperature))")
+                    HStack {
+                        Slider(value: $modelManager.generationConfig.temperature, in: 0...2, step: 0.01)
+                        TextField("", value: $modelManager.generationConfig.temperature, formatter: NumberFormatter.decimalFormatter)
+                            .frame(width: 50)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                    }
+                }
+                VStack(alignment: .leading) {
+                    Text("Top P: \(String(format: "%.2f", modelManager.generationConfig.topP))")
+                    HStack {
+                        Slider(value: $modelManager.generationConfig.topP, in: 0...1, step: 0.01)
+                        TextField("", value: $modelManager.generationConfig.topP, formatter: NumberFormatter.decimalFormatter)
+                            .frame(width: 50)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                    }
+                }
+                VStack(alignment: .leading) {
+                    Text("Max Tokens: \(modelManager.generationConfig.maxTokens)")
+                    TextField("", value: $modelManager.generationConfig.maxTokens, formatter: NumberFormatter.integerFormatter)
+                        .frame(width: 80)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                }
+                Spacer()
+                Button("关闭") {
+                    showSettings = false
+                }
+                .padding(.bottom, 20)
+            }
+            .padding(.leading,20)
+            .padding(.trailing,20)
+            .frame(minWidth: 300, minHeight: 500)
         }
     }
     
@@ -271,6 +349,24 @@ struct ExportFile: FileDocument {
     }
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
         return .init(regularFileWithContents: text.data(using: .utf8)!)
+    }
+}
+
+extension NumberFormatter {
+    static var decimalFormatter: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimum = 0
+        formatter.maximumFractionDigits = 2
+        formatter.maximum = 2
+        return formatter
+    }
+    static var integerFormatter: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .none
+        formatter.minimum = 1
+        formatter.maximum = 2048
+        return formatter
     }
 }
 

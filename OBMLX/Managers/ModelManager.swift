@@ -6,6 +6,7 @@
 //
 import Foundation
 import Combine
+import MLXLMCommon
 
 @MainActor
 class ModelManager: ObservableObject {
@@ -16,6 +17,10 @@ class ModelManager: ObservableObject {
     
     @Published var isModelLoading = false   // 专门表示模型是否在加载
     @Published var isGenerating = false     // 表示是否正在生成回答
+    
+    @Published var instructions: String = "You are a helpful assistant."
+    @Published var generateParameters: GenerateParameters = .init()
+    @Published var generationConfig: GenerationConfig = .init()
 
     private var llm = LocalLLM()
 
@@ -46,7 +51,7 @@ class ModelManager: ObservableObject {
             messages.append(assistantMessage)
 
             do {
-                for try await token in llm.generateStream(prompt: text) {
+                for try await token in llm.generateStream(input: text) {
                     assistantMessage.content += token
                     messages[messages.count - 1] = assistantMessage
                 }
@@ -72,5 +77,47 @@ class ModelManager: ObservableObject {
         isGenerating = false
         // 如果 LocalLLM 支持 session 重置，可在此调用
         llm.newSession()
+    }
+    
+    func updateInstructions(_ text: String) {
+        instructions = text
+        UserDefaults.standard.set(text, forKey: "OBMLX.instructions")
+    }
+
+    func updateConfig(_ config: GenerationConfig) {
+        // 更新并持久化
+        if let data = try? JSONEncoder().encode(config) {
+            UserDefaults.standard.set(data, forKey: "OBMLX.generationConfig")
+        }
+
+        // 转换成 MLX 的 GenerateParameters 交给 LLM
+        generateParameters = GenerateParameters(
+            maxTokens: config.maxTokens,
+            temperature: config.temperature,
+            topP: config.topP
+        )
+    }
+    
+    func loadSavedConfig() {
+        if let text = UserDefaults.standard.string(forKey: "OBMLX.instructions") {
+            instructions = text
+        }
+        if let data = UserDefaults.standard.data(forKey: "OBMLX.generationConfig"),
+           let config = try? JSONDecoder().decode(GenerationConfig.self, from: data) {
+            generationConfig = config
+            updateConfig(config)
+        }
+    }
+}
+
+struct GenerationConfig: Codable {
+    var maxTokens: Int
+    var temperature: Float
+    var topP: Float
+    
+    init(maxTokens: Int = 512, temperature: Float = 0.7, topP: Float = 0.9) {
+        self.maxTokens = maxTokens
+        self.temperature = temperature
+        self.topP = topP
     }
 }

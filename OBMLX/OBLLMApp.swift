@@ -16,5 +16,6 @@ struct OBLLMApp: App {
                 ContentView()
                     .environmentObject(modelManager)
             }
+            .windowToolbarStyle(.unifiedCompact)
         }
 }
