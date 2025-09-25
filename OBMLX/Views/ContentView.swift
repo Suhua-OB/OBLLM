@@ -151,10 +151,17 @@ struct ContentView: View {
 
                 // 状态指示点
                 if modelManager.modelLoaded, let name = selectedModelName {
-                    Circle()
-                        .fill(statusColor)
-                        .frame(width: 10, height: 10)
-                        .help(name)
+                    Button(action: {}) {
+                        Circle()
+                            .fill(statusColor)
+                            .frame(width: 10, height: 10)
+                    }
+                    .buttonStyle(.plain)
+                    .help(name) // macOS ToolTip
+                    .onHover { inside in
+                        NSCursor.pointingHand.push()
+                        if !inside { NSCursor.pop() }
+                    }
                 } else {
                     Circle()
                         .fill(statusColor)
